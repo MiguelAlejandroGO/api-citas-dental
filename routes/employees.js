@@ -39,9 +39,9 @@ router.delete("/delete/:id", (req, res) => {
     [id],
     (err, rows, fields) => {
       if (!err) {
-        res.json({ status: "Employee Deleted" });
+        res.json({ status:200,message:"Delete Date" });
       } else {
-        console.log(err);
+        res.json({status:404 ,message:err});
       }
     }
   );
@@ -63,8 +63,6 @@ router.post("/create", (req, res) => {
     message,
   } = req.body;
 
-  console.log(req.body);
-
   const query = `
     CALL dateAddOrEdit(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
   `;
@@ -85,10 +83,9 @@ router.post("/create", (req, res) => {
     ],
     (err, rows, fields) => {
       if (!err) {
-        res.json({ status: "Date Saved" });
+        res.json({ status:200,message:"Date Saved" });
       } else {
-        console.log(err);
-        console.log("Error");
+        res.json({status:404 ,message:err});
       }
     }
   );
